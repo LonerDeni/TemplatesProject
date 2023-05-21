@@ -6,6 +6,9 @@ public class PersonBuilder {
     protected String city;
     protected int age;
 
+    public PersonBuilder() {
+
+    }
 
     public PersonBuilder setName(String name) {
         this.name = name;
@@ -18,7 +21,7 @@ public class PersonBuilder {
     }
 
     public PersonBuilder setAge(int age) {
-        if (age <= 0)
+        if (age < 0)
             throw new IllegalArgumentException("Возраст не может быть меньше 0");
         this.age = age;
         return this;

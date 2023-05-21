@@ -30,15 +30,11 @@ public class Person {
     }
 
     public boolean hasAge() {
-        if (age > 0)
-            return true;
-        return false;
+        return age > 0;
     }
 
     public boolean hasAddress() {
-        if (city != null)
-            return true;
-        return false;
+        return city != null;
     }
 
     public String getName() {
@@ -50,11 +46,11 @@ public class Person {
     }
 
     public OptionalInt getAge() {
-        return OptionalInt.of(age);
+        return hasAge() ? OptionalInt.of(age) : OptionalInt.empty();
     }
 
     public String getAddress() {
-        return city;
+        return hasAddress() ? city : "Поле адрес не заполнен";
     }
 
     public void setAddress(String address) {
@@ -62,7 +58,10 @@ public class Person {
     }
 
     public void happyBirthday() {
-        this.age = age + 1;
+        if (hasAge())
+            this.age = getAge().getAsInt() + 1;
+        else
+            throw new IllegalArgumentException("Возраст не известен");
     }
 
     public PersonBuilder newChildBuilder() {
@@ -79,6 +78,14 @@ public class Person {
                 ", city='" + city + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return getAge() == person.getAge() && Objects.equals(getName(), person.getName()) && Objects.equals(getSurname(), person.getSurname()) && Objects.equals(city, person.city);
     }
 
     @Override

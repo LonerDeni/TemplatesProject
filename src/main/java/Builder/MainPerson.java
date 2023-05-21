@@ -25,16 +25,19 @@ public class MainPerson {
                 .setAge(-100)
                 .setAddress("Сидней")
                 .build();
+        Person grandFather = new PersonBuilder()
+                .setName("Семен")
+                .setSurname("Вольф")
+                .setAddress("Токио")
+                .build();
 
         try {
-            // Не хватает обяхательных полей
             new PersonBuilder().build();
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
 
         try {
-            // Возраст недопустимый
             new PersonBuilder().setAge(-100).build();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
