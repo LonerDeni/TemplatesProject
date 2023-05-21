@@ -19,16 +19,20 @@ public class MainPerson {
         son.happyBirthday();
         System.out.println(son);
 
+        Person grandFather = new PersonBuilder()
+                .setName("Семен")
+                .setSurname("Вольф")
+                .setAge(0)
+                .setAddress("Токио")
+                .build();
+        grandFather.happyBirthday();
+        System.out.println(grandFather);
+
         Person father = new PersonBuilder()
                 .setName("Семен")
                 .setSurname("Вольф")
                 .setAge(-100)
                 .setAddress("Сидней")
-                .build();
-        Person grandFather = new PersonBuilder()
-                .setName("Семен")
-                .setSurname("Вольф")
-                .setAddress("Токио")
                 .build();
 
         try {

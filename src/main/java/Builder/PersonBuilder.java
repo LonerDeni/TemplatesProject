@@ -4,7 +4,7 @@ public class PersonBuilder {
     protected String name;
     protected String surname;
     protected String city;
-    protected int age;
+    protected int age = -1;
 
     public PersonBuilder() {
 
